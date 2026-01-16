@@ -1,0 +1,20 @@
+<div class="loginPage bg-primary">
+  <div class="mainLoginBlock">
+    <div class="inputBlock">
+      <h1 class="loginTitle">Hello again</h1>
+      <p class="loginSubtitle">Please sign in to continue</p>
+      <ui-input placeholder="Enter Email" label="Email" type="email" [(value)]="email" />
+      <ui-input
+        label="Password"
+        placeholder="Enter password"
+        type="password"
+        [(value)]="password"
+      />
+
+      <button class="loginButton" (click)="submit()">Submit</button>
+    </div>
+    <div class="imgBlock">
+      <img src="assets/loginPageImg.jpg" alt="login" />
+    </div>
+  </div>
+</div>
