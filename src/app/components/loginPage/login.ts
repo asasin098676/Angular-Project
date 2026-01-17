@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { UiInputComponent } from './input/ui-input';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -9,10 +10,15 @@ import { UiInputComponent } from './input/ui-input';
   imports: [UiInputComponent],
 })
 export class LoginPage {
-  email = signal('');
+  login = signal('');
   password = signal('');
+  private authService = inject(AuthService);
 
-  submit() {
-    console.log('Submit:', this.email(), this.password());
+  async submit() {
+    console.log(this.login(), this.password());
+
+    if (!this.login().trim() || !this.password()) return;
+    this.authService.setData(this.login(), this.password());
+    await this.authService.sentLoginData();
   }
 }

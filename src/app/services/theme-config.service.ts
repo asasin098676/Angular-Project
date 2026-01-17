@@ -31,8 +31,6 @@ export class ThemeConfigService {
 
       const data = snap.data() as ThemeColors;
 
-      console.log(data);
-
       this.colors.set(data);
       this.applyCssVariables(data);
       this.loaded.set(true);
