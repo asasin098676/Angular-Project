@@ -1,12 +1,16 @@
-/* ===== Theme utility classes ===== */
+* {
+  padding: 0;
+  margin: 0;
+}
 body {
   margin: 0;
 }
-.bg-primary {
+.background-img {
   background-image: url('/assets/pageBackround.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: fixed;
 }
 
 .bg-secondary {

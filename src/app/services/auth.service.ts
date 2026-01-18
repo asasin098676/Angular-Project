@@ -1,5 +1,6 @@
 import { inject, Injectable, signal, effect } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -7,6 +8,7 @@ export class AuthService {
   private login = signal<string | null>(null);
   private password = signal<string | null>(null);
   readonly error = signal<unknown | null>(null);
+  private router = inject(Router);
 
   setData(login: string, password: string): void {
     this.login.set(login);
@@ -55,5 +57,6 @@ export class AuthService {
     this.login.set(null);
     this.password.set(null);
     this.error.set(null);
+    this.router.navigate(['/login']);
   }
 }

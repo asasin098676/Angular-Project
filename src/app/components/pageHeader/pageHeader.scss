@@ -1,0 +1,108 @@
+.pageHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 56px;
+  padding: 0 16px;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+.menuOverlay {
+  position: fixed;
+  top: 64px;
+  right: 16px;
+  width: 280px;
+  min-height: 180px;
+
+  z-index: 999;
+
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  pointer-events: none;
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  transform-origin: top right;
+
+  &.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+
+.pageHeaderTitle {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  color: rgba(20, 24, 28, 0.9);
+  user-select: none;
+}
+
+.pageHeaderButtons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  button {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid transparent;
+    border-radius: 12px;
+
+    background: transparent;
+    cursor: pointer;
+
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      transform 80ms ease;
+
+    .icon {
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      color: rgba(20, 24, 28, 0.78);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.55);
+      border-color: rgba(20, 24, 28, 0.08);
+
+      .icon {
+        color: rgba(20, 24, 28, 0.92);
+      }
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(59, 130, 246, 0.6);
+      outline-offset: 2px;
+    }
+  }
+}

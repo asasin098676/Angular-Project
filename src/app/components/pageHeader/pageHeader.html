@@ -1,0 +1,20 @@
+<div class="pageHeader">
+  <span class="pageHeaderTitle">Todo-List</span>
+  <div class="pageHeaderButtons">
+    <button (click)="menuTrigger()"><mat-icon class="icon">menu</mat-icon></button>
+    <button>
+      <mat-icon
+        class="icon"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="home"
+      ></mat-icon>
+    </button>
+    <button (click)="logOut()">
+      <mat-icon class="icon">logout</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="menuOverlay" [class.open]="ui.isMenuOpen()">
+  <p>open</p>
+</div>
