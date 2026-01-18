@@ -12,6 +12,18 @@
       />
 
       <button class="loginButton" (click)="submit()">Submit</button>
+      <div class="otherLoginMethots">
+        <button (click)="signInWithGoogle()" class="googleButton">
+          <img src="/assets/google-icon-white-bg.jpg" />
+        </button>
+        <button (click)="signInWithApple()" class="appleButton"><mat-icon>apple</mat-icon></button>
+      </div>
+      <div class="register">
+        <p class="registerText">
+          Don’t have an account?
+          <a class="registerLink">Create one</a>
+        </p>
+      </div>
     </div>
     <div class="imgBlock">
       <img src="assets/loginPageImg.jpg" alt="login" />

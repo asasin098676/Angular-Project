@@ -1,5 +1,12 @@
 import { inject, Injectable, signal, effect } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import {
+  Auth,
+  GoogleAuthProvider,
+  OAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -39,7 +46,35 @@ export class AuthService {
       if (idToken) {
         this.setToken(idToken);
       }
-      console.log(idToken);
+      this.error.set(null);
+    } catch (e) {
+      this.error.set(e);
+    }
+  }
+  async signInWithGoogle(): Promise<void> {
+    try {
+      const provider = new GoogleAuthProvider();
+
+      const cred = await signInWithPopup(this.auth, provider);
+      const idToken = await cred.user.getIdToken();
+
+      if (idToken) this.setToken(idToken);
+
+      this.error.set(null);
+    } catch (e) {
+      this.error.set(e);
+    }
+  }
+  async signInWithApple(): Promise<void> {
+    //need check!!!!!!
+    try {
+      const provider = new OAuthProvider('apple.com');
+
+      const cred = await signInWithPopup(this.auth, provider);
+      const idToken = await cred.user.getIdToken();
+
+      if (idToken) this.setToken(idToken);
+
       this.error.set(null);
     } catch (e) {
       this.error.set(e);
