@@ -9,7 +9,7 @@
     width: 70vw;
     max-width: 800px;
     min-width: 400px;
-    min-height: 400px;
+    min-height: 450px;
     height: 60vh;
     border-radius: 30px;
     padding: 10px;
@@ -54,6 +54,7 @@
       .loginButton {
         width: 80%;
         height: 44px;
+        min-height: 40px;
         margin-top: 6px;
 
         border-radius: 12px;
@@ -76,7 +77,8 @@
           box-shadow 120ms ease,
           filter 120ms ease;
       }
-
+      .appleButton:hover,
+      .googleButton:hover,
       .loginButton:hover {
         transform: translateY(-1px);
         filter: brightness(1.05);
@@ -93,6 +95,8 @@
           inset 0 2px 4px rgba(0, 0, 0, 0.15);
       }
 
+      .appleButton:focus-visible,
+      .googleButton:focus-visible,
       .loginButton:focus-visible {
         outline: none;
         box-shadow:
@@ -104,6 +108,82 @@
         opacity: 0.6;
         cursor: not-allowed;
         box-shadow: none;
+      }
+
+      .otherLoginMethots {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .appleButton,
+        .googleButton {
+          background-color: white;
+          border: 0;
+          border-radius: 12px;
+          width: 145px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        img,
+        mat-icon {
+          width: 25px;
+          height: 25px;
+        }
+      }
+      .register {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .registerText {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.4;
+        color: rgba(20, 24, 28, 0.65);
+      }
+
+      .registerLink {
+        margin-left: 6px;
+        font-weight: 650;
+        color: rgba(37, 99, 235, 0.95);
+        text-decoration: none;
+        cursor: pointer;
+
+        position: relative;
+        padding-bottom: 2px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+
+          width: 100%;
+          height: 2px;
+          border-radius: 2px;
+
+          background: rgba(37, 99, 235, 0.35);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 160ms ease;
+        }
+
+        &:hover::after {
+          transform: scaleX(1);
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+          border-radius: 8px;
+        }
       }
 
       ui-input {
@@ -120,7 +200,6 @@
 
       img {
         width: 90%;
-        height: 55%;
         border-radius: 10px;
       }
     }
