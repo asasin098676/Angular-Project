@@ -1,31 +1,27 @@
 import { inject, Injectable, signal, effect } from '@angular/core';
-import { doc, Firestore } from '@angular/fire/firestore';
 import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private auth: Auth;
-
-  constructor() {
-    this.auth = inject(Auth);
-
-    effect(() => {
-      console.log('[AuthService] login:', this.login());
-      console.log('[AuthService] password:', !!this.password());
-    });
-  }
-
+  private auth = inject(Auth);
   private login = signal<string | null>(null);
   private password = signal<string | null>(null);
   readonly error = signal<unknown | null>(null);
-
-  private readonly path = 'users/test-user';
 
   setData(login: string, password: string): void {
     this.login.set(login);
     this.password.set(password);
   }
 
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+  removeToken(): void {
+    localStorage.removeItem('token');
+  }
   async sentLoginData(): Promise<void> {
     if (!this.login() || !this.password()) {
       console.error('[AuthService] no data');
@@ -38,11 +34,26 @@ export class AuthService {
     try {
       const cred = await signInWithEmailAndPassword(this.auth, email, password);
       const idToken = await cred.user.getIdToken();
+      if (idToken) {
+        this.setToken(idToken);
+      }
       console.log(idToken);
-      // тут ти або , або збережи в signal
       this.error.set(null);
     } catch (e) {
       this.error.set(e);
     }
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  async logout(): Promise<void> {
+    await signOut(this.auth);
+    this.removeToken();
+
+    this.login.set(null);
+    this.password.set(null);
+    this.error.set(null);
   }
 }
