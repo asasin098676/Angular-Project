@@ -1,4 +1,15 @@
 <div class="mainPage background-img">
   <page-header></page-header>
-  <h1>123123123</h1>
+
+  <div class="todosList">
+    @for (t of todoStore.todos(); track t.id) {
+      <todo [todo]="t" />
+    }
+  </div>
+
+  @if (isAddTodoModalOpen()) {
+    <div class="modalOverlay">
+      <add-todo-modal></add-todo-modal>
+    </div>
+  }
 </div>

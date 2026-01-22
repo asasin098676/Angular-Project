@@ -1,0 +1,28 @@
+<div class="createTodoModal">
+  <h2 class="title">Add new todo</h2>
+
+  <div class="form">
+    <label>
+      <span>Name</span>
+      <input
+        placeholder="Enter todo name"
+        [value]="nameTodo()"
+        (input)="nameTodo.set($any($event.target).value)"
+      />
+    </label>
+
+    <label>
+      <span>Description</span>
+      <input
+        placeholder="Enter description"
+        [value]="descriptionTodo()"
+        (input)="descriptionTodo.set($any($event.target).value)"
+      />
+    </label>
+  </div>
+
+  <div class="actions">
+    <button class="btn secondary" (click)="cancelCreateTodo()">Cancel</button>
+    <button class="btn primary" (click)="createTodo()">Create</button>
+  </div>
+</div>
