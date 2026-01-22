@@ -1,7 +1,9 @@
 <div class="pageHeader">
   <span class="pageHeaderTitle">Todo-List</span>
   <div class="pageHeaderButtons">
-    <button (click)="menuTrigger()"><mat-icon class="icon">menu</mat-icon></button>
+    <button (click)="menuTrigger($event)">
+      <mat-icon class="icon">menu</mat-icon>
+    </button>
     <button>
       <mat-icon
         class="icon"
@@ -16,5 +18,5 @@
   </div>
 </div>
 <div class="menuOverlay" [class.open]="ui.isMenuOpen()">
-  <p>open</p>
+  <menu></menu>
 </div>

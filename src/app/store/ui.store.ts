@@ -19,6 +19,13 @@ export const UiStore = signalStore(
     toggleMenu() {
       patchState(store, { isMenuOpen: !store.isMenuOpen() });
     },
+    openMenu() {
+      patchState(store, { isMenuOpen: true });
+    },
+    closeMenu() {
+      patchState(store, { isMenuOpen: false });
+    },
+
     setLoading(value: boolean) {
       patchState(store, { isLoading: value });
     },
